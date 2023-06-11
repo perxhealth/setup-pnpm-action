@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           pnpm-version: ${{ matrix.pnpm }}
-          install-deps: true
 
       - name: Check node version
         run: |
