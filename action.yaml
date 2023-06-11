@@ -1,0 +1,36 @@
+name: Setup pnpm
+description: Simultaneously setup node, pnpm and cache its store. It does not ensure dependencies are up-to-date
+
+branding:
+  icon: package
+  color: blue
+
+inputs:
+  node-version:
+    description: Nominate a specific Nodejs version
+    required: true
+  pnpm-version:
+    description: Nominate a specific pnpm version
+    required: true
+  install-deps:
+    description: Boolean to indicate if `pnpm install` should be run
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2.2.4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        run_install: false
+
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        cache: 'pnpm'
+        node-version: ${{ inputs.node-version }}
+
+    - name: Install dependencies
+      if: ${{ inputs.install-deps == 'true' }}
+      run: pnpm install
