@@ -19,14 +19,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Stub lockfile
-        run: touch pnpm-lock.yaml
-
       - name: Install node ${{ matrix.node }} and pnpm ${{ matrix.pnpm }}
         uses: ./
         with:
           node-version: ${{ matrix.node }}
           pnpm-version: ${{ matrix.pnpm }}
+          install-deps: true
 
       - name: Check node version
         run: |

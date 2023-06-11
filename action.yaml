@@ -23,7 +23,7 @@ runs:
       uses: pnpm/action-setup@v2.2.4
       with:
         version: ${{ inputs.pnpm-version }}
-        run_install: false
+        run_install: ${{ inputs.install-deps }}
 
     - name: Setup node
       uses: actions/setup-node@v3
