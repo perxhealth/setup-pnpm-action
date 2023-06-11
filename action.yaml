@@ -30,8 +30,3 @@ runs:
       with:
         cache: 'pnpm'
         node-version: ${{ inputs.node-version }}
-
-    - name: Install dependencies
-      if: ${{ inputs.install-deps == 'true' }}
-      shell: bash
-      run: pnpm install
