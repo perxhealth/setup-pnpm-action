@@ -18,8 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Whats here?
-        run: ls -la
+      - name: Stub lockfile
+        run: touch pnpm-lock.yaml
 
       - name: Install node ${{ matrix.node }} and pnpm ${{ matrix.pnpm }}
         uses: ./
