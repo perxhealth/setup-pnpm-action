@@ -8,7 +8,6 @@ on:
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
-    concurrency: 1
 
     strategy:
       matrix:
