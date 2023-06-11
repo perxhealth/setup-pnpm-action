@@ -1,0 +1,36 @@
+name: Preflight
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        pnpm: ['6.35.1', '7.33.0', '8.6.1']
+        node: ['16.20.0', '18.16.0', '20.2.0']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install node ${{ matrix.node }} and pnpm ${{ matrix.pnpm }}
+        uses: ./
+        with:
+          node-version: ${{ matrix.node }}
+          pnpm-version: ${{ matrix.pnpm }}
+          install-deps: true
+
+      - name: Check node version
+        run: |
+          NODE_VERSION=$(node -v)
+          if [ "$NODE_VERSION" -ne "v${{ matrix.node }}" ]; then exit 1
+
+      - name: Check pnpm version
+        run: |
+          PNPM_VERSION=$(pnpm --version)
+          if [ "$PNPM_VERSION" -ne "${{ matrix.pnpm }}" ]; then exit 1
