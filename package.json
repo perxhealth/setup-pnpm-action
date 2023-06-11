@@ -1,0 +1,9 @@
+{
+  "name": "@perxhealth/setup-pnpm-action",
+  "version": "0.0.0-development",
+  "description": "This package.json is essentially just a stub!",
+  "main": "stub.js",
+  "author": "",
+  "keywords": [],
+  "license": "ISC"
+}
