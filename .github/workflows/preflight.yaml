@@ -30,9 +30,9 @@ jobs:
       - name: Check node version
         run: |
           NODE_VERSION=$(node -v)
-          if [ "$NODE_VERSION" -ne "v${{ matrix.node }}" ]; then exit 1
+          if [ "$NODE_VERSION" -ne "v${{ matrix.node }}" ]; then exit 1; fi
 
       - name: Check pnpm version
         run: |
           PNPM_VERSION=$(pnpm --version)
-          if [ "$PNPM_VERSION" -ne "${{ matrix.pnpm }}" ]; then exit 1
+          if [ "$PNPM_VERSION" -ne "${{ matrix.pnpm }}" ]; then exit 1; fi
