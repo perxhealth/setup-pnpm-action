@@ -26,7 +26,7 @@ The Action currently expects two required inputs, and a single optional input
 
    the Nodejs version you wish to install, such as `16.15.0`, `20.2.0`, etc.
 
-2. `to`
+2. `pnpm-version`
 
    the pnpm version you wish to install, such as `7.33.0`, `8.6.2`, etc.
 
