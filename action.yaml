@@ -13,8 +13,9 @@ inputs:
     description: Nominate a specific pnpm version
     required: true
   install-deps:
-    description: Boolean to indicate if `pnpm install` should be run
+    description: Boolean to indicate if `pnpm install` should be run. Defaults to `true`
     required: false
+    default: true
 
 runs:
   using: composite
