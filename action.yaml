@@ -16,6 +16,10 @@ inputs:
     description: Boolean to indicate if `pnpm install` should be run. Defaults to `true`
     required: false
     default: true
+  restore-modules-from-cache:
+    description: Boolean to indicate if the action should automatically cache `node_modules`
+    required: false
+    default: true
 
 runs:
   using: composite
@@ -31,3 +35,11 @@ runs:
       with:
         cache: 'pnpm'
         node-version: ${{ inputs.node-version }}
+
+    - name: Cache modules
+      uses: actions/cache@v3
+      id: cache-modules
+      if: ${{ inputs.restore-modules-from-cache != 'false' }}
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ inputs.node-version }}-modules-${{ hashFiles('package-lock.json') }}
