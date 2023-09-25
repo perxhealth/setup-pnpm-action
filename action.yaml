@@ -35,9 +35,21 @@ runs:
 
     - name: Setup node
       uses: actions/setup-node@v3
+      if: ${{ env.NODE_AUTH_TOKEN == '' }}
       with:
         cache: 'pnpm'
         node-version: ${{ inputs.node-version }}
+      env:
+        NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
+
+    - name: Setup node (with auth token)
+      uses: actions/setup-node@v3
+      if: ${{ env.NODE_AUTH_TOKEN != '' }}
+      with:
+        cache: 'pnpm'
+        node-version: ${{ inputs.node-version }}
+      env:
+        NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
 
     - name: Cache modules
       uses: actions/cache@v3
