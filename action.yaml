@@ -29,6 +29,7 @@ runs:
 
     - name: Configure GitHub Packages authentication
       if: ${{ env.GITHUB_TOKEN != '' }}
+      shell: bash
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ env.GITHUB_TOKEN }}" >> .npmrc
 
