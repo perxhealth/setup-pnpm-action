@@ -24,6 +24,10 @@ inputs:
     description: Sets up GitHub Packages authentication for the nominated organisation
     required: false
     default: false
+  github-token:
+    description: If using GitHub Packages, provide the token required by `github-packages-org`
+    required: false
+    default: false
 
 runs:
   using: composite
@@ -35,7 +39,7 @@ runs:
       if: ${{ inputs.github-packages-org != 'false' }}
       shell: bash
       run: |
-        echo "//npm.pkg.github.com/${{ inputs.github-packages-org }}:_authToken=${{ env.GITHUB_TOKEN }}" >> .npmrc
+        echo "//npm.pkg.github.com/${{ inputs.github-packages-org }}:_authToken=${{ inputs.github-token }}" >> .npmrc
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.4
