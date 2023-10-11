@@ -20,6 +20,10 @@ inputs:
     description: Boolean to indicate if the action should automatically cache `node_modules`
     required: false
     default: true
+  github-packages-org:
+    description: Sets up GitHub Packages authentication for the nominated organisation
+    required: false
+    default: false
 
 runs:
   using: composite
@@ -28,10 +32,10 @@ runs:
       uses: actions/checkout@v3
 
     - name: Configure GitHub Packages authentication
-      if: ${{ env.GITHUB_TOKEN != '' }}
+      if: ${{ inputs.github-packages-org != 'false' }}
       shell: bash
       run: |
-        echo "//npm.pkg.github.com/:_authToken=${{ env.GITHUB_TOKEN }}" >> .npmrc
+        echo "//npm.pkg.github.com/${{ inputs.github-packages-org }}:_authToken=${{ env.GITHUB_TOKEN }}" >> .npmrc
 
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.4
